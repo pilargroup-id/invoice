@@ -249,6 +249,9 @@ function Sidebar({
   ]
     .filter(Boolean)
     .join(' ')
+  const hasPrimaryItems = primaryItems.length > 0
+  const navItems = hasPrimaryItems ? primaryItems : secondaryItems
+  const footerItems = hasPrimaryItems ? secondaryItems : []
 
   return (
     <aside id="sidebar" className={sidebarClassName}>
@@ -289,7 +292,7 @@ function Sidebar({
       </div>
 
       <nav className="sidebar-nav" aria-label="Main navigation">
-        {primaryItems.map((item) => (
+        {navItems.map((item) => (
           <SidebarNavItem
             key={getItemKey(item)}
             item={item}
@@ -303,7 +306,7 @@ function Sidebar({
       </nav>
 
       <div className="sidebar-bottom">
-        {secondaryItems.map((item) => (
+        {footerItems.map((item) => (
           <SidebarNavItem
             key={getItemKey(item)}
             item={item}
