@@ -298,7 +298,7 @@ select {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   width: calc(100% - 16px);
   margin: 0 8px;
   padding: 10px 12px;
@@ -393,13 +393,14 @@ select {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
+  width: 28px;
+  height: 28px;
 }
 
 .nav-item__bullet {
   position: relative;
-  width: 42px;
-  height: 42px;
+  width: 28px;
+  height: 28px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
