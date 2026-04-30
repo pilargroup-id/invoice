@@ -309,7 +309,17 @@ function InvoiceApp() {
               }}
             >
               © 2026 PT Pilar Niaga Makmur. All rights reserved.
-Developed by IT Team PT Pilar Niaga Makmur.
+            </Typography>
+            <Typography
+              sx={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: "0.75rem",
+                color: "rgba(35,57,113,0.45)",
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+              }}
+            >
+              Developed by IT Team PT Pilar Niaga Makmur.
             </Typography>
           </Box>
         </main>
