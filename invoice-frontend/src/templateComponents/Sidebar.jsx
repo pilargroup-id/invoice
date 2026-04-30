@@ -185,7 +185,7 @@ function Sidebar({
 
   const handleSelect = async (item) => {
     if (item.external && item.href) {
-      window.open(item.href, '_blank', 'noopener,noreferrer')
+      window.location.assign(item.href)
 
       if (mobileOpen) {
         onCloseMobile?.()
