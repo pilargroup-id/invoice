@@ -74,7 +74,7 @@ function SidebarNavItem({
   const content = (
     <>
       {Icon ? (
-        <Icon className="nav-icon" size={22} />
+        <Icon className="nav-icon" size={20} />
       ) : (
         <span className="nav-item__bullet" aria-hidden="true" />
       )}
@@ -281,7 +281,7 @@ function Sidebar({
             <div className="online-status" />
           </div>
 
-          <div className="profile-info">
+          <div className="profile-info" style={{ minWidth: 0, overflow: 'hidden' }}>
             <h3 className="profile-name">{userName}</h3>
             <p className="profile-role">{userRole}</p>
           </div>

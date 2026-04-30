@@ -11,8 +11,24 @@ import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded'
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded'
 
 function createIconComponent(IconComponent) {
-  return function WrappedIcon({ size = 20, sx, ...props }) {
-    return <IconComponent sx={{ fontSize: size, ...sx }} {...props} />
+  return function WrappedIcon({ size = 20, className, style, ...props }) {
+    return (
+      <span
+        className={className}
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: size,
+          height: size,
+          flexShrink: 0,
+          lineHeight: 0,
+          ...style,
+        }}
+      >
+        <IconComponent sx={{ fontSize: size, display: 'block' }} {...props} />
+      </span>
+    )
   }
 }
 
