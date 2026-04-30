@@ -1,14 +1,9 @@
-import { ArrowLeft, BarChartSquare02 } from './icons.jsx'
+import { ArrowLeft } from './icons.jsx'
 
 export const defaultNavigationPath = '/'
 export const implementedNavigationPaths = ['/']
 
 export const primaryNavigationItems = [
-  {
-    label: 'Invoice Generator',
-    href: '/',
-    icon: BarChartSquare02,
-  },
 ]
 
 export const secondaryNavigationItems = [
