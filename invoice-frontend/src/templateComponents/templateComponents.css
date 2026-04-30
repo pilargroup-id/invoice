@@ -173,11 +173,11 @@ select {
 }
 
 .sidebar-logo {
-  padding: 2rem 1.5rem 1.5rem;
+  padding: 1.5rem 1rem 1.25rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .logo-image {
@@ -206,7 +206,7 @@ select {
 .profile-content {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .profile-avatar {
@@ -285,9 +285,9 @@ select {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 10px;
   margin: 0 8px;
-  padding: 12px 1.5rem;
+  padding: 12px 1rem;
   border-radius: 8px;
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
@@ -391,10 +391,12 @@ select {
 
 .nav-text {
   flex: 1;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 500;
-  line-height: 1.2;
+  line-height: 1.3;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   transition: all 0.3s ease;
 }
 
