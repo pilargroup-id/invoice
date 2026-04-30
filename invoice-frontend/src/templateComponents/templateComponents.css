@@ -298,10 +298,10 @@ select {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   width: calc(100% - 16px);
   margin: 0 8px;
-  padding: 10px 14px;
+  padding: 10px 12px;
   border-radius: 8px;
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
@@ -393,14 +393,14 @@ select {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 }
 
 .nav-item__bullet {
   position: relative;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
