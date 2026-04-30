@@ -1,18 +1,18 @@
 import { useRef, useState } from "react";
 import axios from "axios";
-import { Box, Container, Snackbar, Stack, Typography } from "@mui/material";
+import { Box, Snackbar, Stack, Typography } from "@mui/material";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import ErrorRoundedIcon from "@mui/icons-material/ErrorRounded";
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
 import WarningAmberRoundedIcon from "@mui/icons-material/WarningAmberRounded";
-import Layout from "./components/Layout";
-import Header from "./components/Header";
 import ProcessStatus from "./components/ProcessStatus";
 import ResultCard from "./components/ResultCard";
 import UploadCard from "./components/UploadCard";
-import { AuthProvider } from "./auth/AuthContext";
+import { AuthProvider, useAuth } from "./auth/AuthContext";
 import ProtectedRoute from "./auth/ProtectedRoute";
+import { Header, Sidebar } from "./templateComponents";
+import "./templateComponents/templateComponents.css";
 
 const API_BASE = "";
 const POLL_INTERVAL_MS = 1500;
@@ -26,9 +26,6 @@ const theme = createTheme({
           padding: 0,
           minHeight: "100%",
           width: "100%",
-        },
-        body: {
-          backgroundColor: "#dde5ed",
         },
       },
     },
@@ -58,33 +55,11 @@ const snackbarConfig = {
   },
 };
 
-function DotPattern({
-  x,
-  y,
-  cols = 14,
-  rows = 10,
-  gap = 24,
-  r = 2,
-  color = "rgba(120,160,195,0.35)",
-}) {
-  const dots = [];
-  for (let row = 0; row < rows; row++) {
-    for (let col = 0; col < cols; col++) {
-      dots.push(
-        <circle
-          key={`${row}-${col}`}
-          cx={x + col * gap}
-          cy={y + row * gap}
-          r={r}
-          fill={color}
-        />
-      );
-    }
-  }
-  return <>{dots}</>;
-}
-
 function InvoiceApp() {
+  const { user, logout } = useAuth();
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [sidebarMobileOpen, setSidebarMobileOpen] = useState(false);
+
   const [selectedFile, setSelectedFile] = useState(null);
   const [outputFolder, setOutputFolder] = useState("invoices_output");
   const [isProcessing, setIsProcessing] = useState(false);
@@ -232,7 +207,6 @@ function InvoiceApp() {
       startPolling(data.job_id);
     } catch (error) {
       console.error("Generate invoice error:", error);
-      console.error("Generate invoice error detail:", error.response?.data);
 
       let errorMessage = "Gagal memproses invoice.";
       if (error.response?.data?.detail) {
@@ -254,100 +228,44 @@ function InvoiceApp() {
     }
   };
 
+  const handleSidebarAction = (action) => {
+    if (action === "logout") {
+      logout();
+    }
+  };
+
   const cfg = snackbarConfig[snackbar.severity] ?? snackbarConfig.info;
 
+  const shellClass = [
+    "dashboard-shell",
+    sidebarCollapsed ? "dashboard-shell--sidebar-collapsed" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <Layout>
-      <Box
-        sx={{
-          minHeight: "100vh",
-          width: "100%",
-          position: "relative",
-          overflow: "hidden",
-          backgroundColor: "#dde5ed",
-          backgroundImage: [
-            "radial-gradient(ellipse 55% 50% at 100% 10%, rgba(160,200,230,0.70) 0%, rgba(140,185,220,0.35) 50%, transparent 75%)",
-            "radial-gradient(ellipse 60% 55% at 100% 72%, rgba(155,200,230,0.65) 0%, rgba(130,180,218,0.30) 50%, transparent 75%)",
-            "radial-gradient(ellipse 75% 60% at -5% 105%, rgba(240,175,80,0.75) 0%, rgba(235,160,60,0.55) 25%, rgba(228,195,130,0.35) 55%, transparent 78%)",
-            "radial-gradient(ellipse 70% 50% at 50% 50%, rgba(220,232,242,0.35) 0%, transparent 70%)",
-            "linear-gradient(150deg, #e2eaf2 0%, #d8e2ec 50%, #d4dfe9 100%)",
-          ].join(", "),
-        }}
-      >
-        <Box
-          component="svg"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1440 960"
-          preserveAspectRatio="xMidYMid slice"
-          aria-hidden="true"
-          sx={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            pointerEvents: "none",
-            zIndex: 0,
-          }}
-        >
-          <path
-            d="M900 300 Q1050 200 1200 280 Q1350 360 1500 240 L1500 600 Q1350 700 1180 620 Q1020 540 900 620 Z"
-            fill="rgba(175,215,240,0.40)"
-          />
-          <path
-            d="M700 560 Q920 460 1140 540 Q1320 608 1500 500 L1500 960 L700 960 Z"
-            fill="rgba(175,215,240,0.25)"
-          />
+    <div className={shellClass}>
+      <Sidebar
+        collapsed={sidebarCollapsed}
+        mobileOpen={sidebarMobileOpen}
+        activePath="/"
+        userName={user?.name ?? "User"}
+        userRole={user?.job_position ?? user?.department ?? "Invoice System"}
+        onToggleCollapse={() => setSidebarCollapsed((v) => !v)}
+        onCloseMobile={() => setSidebarMobileOpen(false)}
+        onAction={handleSidebarAction}
+      />
 
-          <path
-            d="M-200 700 Q0 580 200 680 Q340 750 480 860 Q300 960 -200 960 Z"
-            fill="rgba(240,185,90,0.30)"
-          />
-          <path
-            d="M-200 780 Q-20 680 160 758 Q300 820 430 920 Q220 960 -200 960 Z"
-            fill="rgba(238,170,70,0.48)"
-          />
-          <path
-            d="M-200 870 Q-60 810 100 858 Q220 892 340 960 L-200 960 Z"
-            fill="rgba(232,158,55,0.65)"
-          />
-          <path
-            d="M-200 860 Q-40 800 120 845 Q250 878 360 950 Q200 940 -200 940 Z"
-            fill="rgba(250,210,120,0.30)"
-          />
+      <div className="dashboard-stage">
+        <Header
+          title="Invoice System"
+          breadcrumb={[{ label: "Invoice Generator", active: true }]}
+          showMenuButton
+          onMenuToggle={() => setSidebarMobileOpen((v) => !v)}
+        />
 
-          <DotPattern
-            x={960}
-            y={60}
-            cols={14}
-            rows={9}
-            gap={26}
-            r={2.2}
-            color="rgba(110,155,195,0.32)"
-          />
-          <DotPattern
-            x={1100}
-            y={560}
-            cols={9}
-            rows={7}
-            gap={22}
-            r={1.8}
-            color="rgba(110,155,195,0.22)"
-          />
-        </Box>
-
-        <Container
-          maxWidth="lg"
-          sx={{
-            py: { xs: 2.25, md: 4.5 },
-            px: { xs: 2, sm: 3 },
-            position: "relative",
-            zIndex: 1,
-          }}
-        >
+        <main className="dashboard-main">
           <Stack spacing={3}>
-            <Header />
-
             <UploadCard
               selectedFile={selectedFile}
               outputFolder={outputFolder}
@@ -382,7 +300,7 @@ function InvoiceApp() {
               sx={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "0.75rem",
-                color: "rgba(35,57,113,0.55)",
+                color: "rgba(35,57,113,0.45)",
                 letterSpacing: "0.08em",
                 textTransform: "uppercase",
               }}
@@ -390,8 +308,8 @@ function InvoiceApp() {
               Invoice Generator | PT Pilar Niaga Makmur
             </Typography>
           </Box>
-        </Container>
-      </Box>
+        </main>
+      </div>
 
       <Snackbar
         open={snackbar.open}
@@ -449,7 +367,7 @@ function InvoiceApp() {
           </Box>
         </Box>
       </Snackbar>
-    </Layout>
+    </div>
   );
 }
 
