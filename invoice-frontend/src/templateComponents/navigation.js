@@ -1,4 +1,4 @@
-import { BarChartSquare02, LogOut01 } from './icons.jsx'
+import { ArrowLeft, BarChartSquare02 } from './icons.jsx'
 
 export const defaultNavigationPath = '/'
 export const implementedNavigationPaths = ['/']
@@ -13,9 +13,9 @@ export const primaryNavigationItems = [
 
 export const secondaryNavigationItems = [
   {
-    label: 'Logout',
-    icon: LogOut01,
-    action: 'logout',
-    variant: 'danger',
+    label: 'Kembali Ke Pilar Group',
+    href: 'https://pilargroup.id',
+    icon: ArrowLeft,
+    external: true,
   },
 ]

@@ -8,7 +8,6 @@ import {
   primaryNavigationItems,
   secondaryNavigationItems,
 } from './navigation.js'
-import { submitLogout } from './logoutService.js'
 
 function getInitials(name) {
   return name
@@ -185,12 +184,13 @@ function Sidebar({
   }, [activePath, primaryItems, secondaryItems])
 
   const handleSelect = async (item) => {
-    if (item.href === '/logout') {
+    if (item.external && item.href) {
+      window.open(item.href, '_blank', 'noopener,noreferrer')
+
       if (mobileOpen) {
         onCloseMobile?.()
       }
 
-      await submitLogout()
       return
     }
 

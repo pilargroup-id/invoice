@@ -163,7 +163,7 @@ export default function Header() {
           <Box sx={{ animation: "fade-up 0.5s ease both" }}>
             <Chip
               icon={<AutoAwesomeRoundedIcon sx={{ fontSize: "15px !important", color: "#C7D6F7 !important" }} />}
-              label="Modern Invoice Generator"
+              label="Modern Bill Forge"
               sx={{
                 background: "rgba(255,255,255,0.10)",
                 border: "1px solid rgba(255,255,255,0.16)",
@@ -228,7 +228,7 @@ export default function Header() {
                     WebkitTextFillColor: "transparent",
                   }}
                 >
-                  Invoice Generator
+                  Bill Forge
                 </Typography>
                 <Chip
                   icon={<BoltRoundedIcon sx={{ fontSize: "14px !important", color: "#FDE68A !important" }} />}

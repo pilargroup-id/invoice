@@ -1,4 +1,5 @@
 import BarChartRoundedIcon from '@mui/icons-material/BarChartRounded'
+import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded'
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded'
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded'
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
@@ -16,6 +17,7 @@ function createIconComponent(IconComponent) {
 }
 
 export const BarChartSquare02 = createIconComponent(BarChartRoundedIcon)
+export const ArrowLeft = createIconComponent(ArrowBackRoundedIcon)
 export const Bell04 = createIconComponent(NotificationsNoneRoundedIcon)
 export const ChevronDown = createIconComponent(KeyboardArrowDownRoundedIcon)
 export const ChevronLeft = createIconComponent(ChevronLeftRoundedIcon)
