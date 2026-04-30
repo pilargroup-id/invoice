@@ -393,8 +393,14 @@ select {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 18px;
-  height: 18px;
+  width: auto;
+  height: auto;
+  min-width: 0;
+  margin-right: -2px;
+}
+
+.nav-icon > svg {
+  display: block;
 }
 
 .nav-item__bullet {
