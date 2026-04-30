@@ -1,5 +1,6 @@
 export { default as Header } from './Header.jsx'
 export { default as Sidebar } from './Sidebar.jsx'
+export { default as BackgroundMain } from './BackgroundMain.jsx'
 
 export * from './authStorage.js'
 export * from './accessControl.js'

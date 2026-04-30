@@ -11,7 +11,7 @@ import ResultCard from "./components/ResultCard";
 import UploadCard from "./components/UploadCard";
 import { AuthProvider, useAuth } from "./auth/AuthContext";
 import ProtectedRoute from "./auth/ProtectedRoute";
-import { Header, Sidebar } from "./templateComponents";
+import { BackgroundMain, Header, Sidebar } from "./templateComponents";
 import "./templateComponents/templateComponents.css";
 
 const API_BASE = "";
@@ -244,7 +244,10 @@ function InvoiceApp() {
     .join(" ");
 
   return (
-    <div className={shellClass}>
+    <>
+      <BackgroundMain />
+
+      <div className={shellClass}>
       <Sidebar
         collapsed={sidebarCollapsed}
         mobileOpen={sidebarMobileOpen}
@@ -305,7 +308,8 @@ function InvoiceApp() {
                 textTransform: "uppercase",
               }}
             >
-              Invoice Generator | PT Pilar Niaga Makmur
+              © 2026 PT Pilar Niaga Makmur. All rights reserved.
+Developed by IT Team PT Pilar Niaga Makmur.
             </Typography>
           </Box>
         </main>
@@ -367,7 +371,8 @@ function InvoiceApp() {
           </Box>
         </Box>
       </Snackbar>
-    </div>
+      </div>
+    </>
   );
 }
 
