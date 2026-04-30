@@ -177,6 +177,7 @@ select {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .logo-image {
@@ -206,6 +207,8 @@ select {
   display: flex;
   align-items: center;
   gap: 12px;
+  width: 100%;
+  min-width: 0;
 }
 
 .profile-avatar {
@@ -244,8 +247,11 @@ select {
 }
 
 .profile-info {
+  display: grid;
+  gap: 3px;
   overflow: hidden;
   min-width: 0;
+  text-align: left;
   transition: all 0.3s ease;
 }
 
@@ -293,6 +299,7 @@ select {
   display: flex;
   align-items: center;
   gap: 12px;
+  width: calc(100% - 16px);
   margin: 0 8px;
   padding: 10px 12px;
   border-radius: 8px;
@@ -390,9 +397,19 @@ select {
 }
 
 .nav-item__bullet {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nav-item__bullet::before {
+  content: '';
   width: 8px;
   height: 8px;
-  flex-shrink: 0;
   border-radius: 999px;
   background: rgba(233, 196, 106, 0.8);
   box-shadow: 0 0 0 4px rgba(233, 196, 106, 0.14);

@@ -281,7 +281,7 @@ function Sidebar({
             <div className="online-status" />
           </div>
 
-          <div className="profile-info" style={{ minWidth: 0, overflow: 'hidden' }}>
+          <div className="profile-info">
             <h3 className="profile-name">{userName}</h3>
             <p className="profile-role">{userRole}</p>
           </div>
