@@ -285,7 +285,7 @@ select {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 9px;
   margin: 0 8px;
   padding: 12px 1.5rem;
   border-radius: 8px;
@@ -376,8 +376,8 @@ select {
 
 .nav-icon {
   flex-shrink: 0;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
 
 .nav-item__bullet {
@@ -393,6 +393,7 @@ select {
   flex: 1;
   font-size: 0.9rem;
   font-weight: 500;
+  line-height: 1.2;
   white-space: nowrap;
   transition: all 0.3s ease;
 }

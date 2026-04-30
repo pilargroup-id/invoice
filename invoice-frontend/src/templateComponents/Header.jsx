@@ -13,7 +13,7 @@ import {
 } from './departmentFilter.js'
 
 function Header({
-  title = 'Pilar Group',
+  title = 'Bill Forge',
   breadcrumb = [
     { label: 'All', href: '#' },
     { label: 'Finance', href: '#', active: true },

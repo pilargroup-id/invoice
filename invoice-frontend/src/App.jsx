@@ -258,7 +258,7 @@ function InvoiceApp() {
 
       <div className="dashboard-stage">
         <Header
-          title="Invoice System"
+          title="Bill Forge"
           breadcrumb={[{ label: "Invoice Generator", active: true }]}
           showMenuButton
           onMenuToggle={() => setSidebarMobileOpen((v) => !v)}
