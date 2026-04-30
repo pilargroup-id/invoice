@@ -74,7 +74,7 @@ function SidebarNavItem({
   const content = (
     <>
       {Icon ? (
-        <Icon className="nav-icon" size={20} />
+        <Icon className="nav-icon" size={22} />
       ) : (
         <span className="nav-item__bullet" aria-hidden="true" />
       )}

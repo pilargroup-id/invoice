@@ -19,8 +19,6 @@ function createIconComponent(IconComponent) {
           display: 'inline-flex',
           alignItems: 'center',
           justifyContent: 'center',
-          width: size,
-          height: size,
           flexShrink: 0,
           lineHeight: 0,
           ...style,
