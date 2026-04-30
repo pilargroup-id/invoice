@@ -173,11 +173,10 @@ select {
 }
 
 .sidebar-logo {
-  padding: 1.5rem 1.5rem 1.25rem;
+  padding: 1.25rem 1.25rem 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
-  gap: 8px;
 }
 
 .logo-image {
@@ -206,18 +205,21 @@ select {
 .profile-content {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
 }
 
 .profile-avatar {
   position: relative;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .profile-avatar__badge {
-  width: 48px;
-  height: 48px;
-  display: inline-flex;
+  width: 42px;
+  height: 42px;
+  display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
@@ -225,6 +227,8 @@ select {
   border: 2px solid var(--accent-teal);
   color: #fff;
   font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
 }
 
 .online-status {
@@ -241,26 +245,30 @@ select {
 
 .profile-info {
   overflow: hidden;
+  flex: 1;
+  min-width: 0;
   transition: all 0.3s ease;
 }
 
 .profile-name {
-  margin: 0 0 2px;
+  margin: 0 0 3px;
   color: #fff;
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .profile-role {
   margin: 0;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.74rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .sidebar-nav,
@@ -285,9 +293,9 @@ select {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   margin: 0 8px;
-  padding: 12px 1rem;
+  padding: 10px 12px;
   border-radius: 8px;
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
@@ -376,6 +384,8 @@ select {
 
 .nav-icon {
   flex-shrink: 0;
+  display: block;
+  margin: 0;
   width: 20px;
   height: 20px;
 }
