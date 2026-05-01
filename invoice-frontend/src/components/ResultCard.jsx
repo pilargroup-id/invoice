@@ -464,6 +464,7 @@ export default function ResultCard({ result }) {
                   borderRadius: "16px",
                   p: { xs: "13px 15px", md: "14px 16px" },
                   width: "100%",
+                  height: "100%",
                   display: "flex",
                   flexDirection: "column",
                   gap: 0.7,
