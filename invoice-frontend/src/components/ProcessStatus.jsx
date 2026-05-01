@@ -238,13 +238,13 @@ export default function ProcessStatus({
         }}
       >
         <Stack
-          direction={{ xs: "column", sm: "row" }}
-          justifyContent="space-between"
-          alignItems={{ xs: "flex-start", sm: "center" }}
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
           spacing={1.5}
           sx={{ animation: "fade-up 0.45s ease both" }}
         >
-          <Box>
+          <Box sx={{ textAlign: "center" }}>
             <Typography
               sx={{
                 fontFamily: "'Sora', sans-serif",
@@ -303,6 +303,7 @@ export default function ProcessStatus({
               background: accentLight,
               border: `1px solid ${accentBorder}`,
               color: accentColor,
+              alignSelf: "center",
             }}
           />
         </Stack>
