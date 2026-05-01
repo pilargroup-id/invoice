@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   Divider,
-  Grid,
   Paper,
   Stack,
   Typography,
@@ -449,16 +448,17 @@ export default function ResultCard({ result }) {
           </Box>
         </Stack>
 
-        <Grid
-          container
-          spacing={1.5}
+        <Box
           sx={{
             animation: "fade-up 0.45s ease 0.08s both",
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", md: "repeat(3, minmax(0, 1fr))" },
+            gap: 1.5,
             alignItems: "stretch",
           }}
         >
           {statItems(safeResult).map(({ icon, label, value, accent, accentBorder }) => (
-            <Grid item xs={12} md={4} key={label} sx={{ display: "flex" }}>
+            <Box key={label} sx={{ display: "flex" }}>
               <Box
                 sx={{
                   borderRadius: "16px",
@@ -525,9 +525,9 @@ export default function ResultCard({ result }) {
                   {value}
                 </Typography>
               </Box>
-            </Grid>
+            </Box>
           ))}
-        </Grid>
+        </Box>
 
         <Divider
           sx={{
