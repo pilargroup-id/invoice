@@ -452,18 +452,22 @@ export default function ResultCard({ result }) {
         <Grid
           container
           spacing={1.5}
-          sx={{ animation: "fade-up 0.45s ease 0.08s both" }}
+          sx={{
+            animation: "fade-up 0.45s ease 0.08s both",
+            alignItems: "stretch",
+          }}
         >
           {statItems(safeResult).map(({ icon, label, value, accent, accentBorder }) => (
             <Grid item xs={12} md={4} key={label}>
               <Box
                 sx={{
                   borderRadius: "16px",
-                  p: "14px 17px",
+                  p: { xs: "13px 15px", md: "14px 16px" },
                   height: "100%",
+                  minHeight: { xs: 112, md: 118 },
                   display: "flex",
                   flexDirection: "column",
-                  gap: 0.8,
+                  gap: 0.7,
                   justifyContent: "space-between",
                   background: "rgba(255,255,255,0.70)",
                   backdropFilter: "blur(10px)",
@@ -507,11 +511,12 @@ export default function ResultCard({ result }) {
                     fontWeight: 800,
                     fontSize: { xs: "0.95rem", md: "1rem" },
                     color: themeBlueDeep,
-                    lineHeight: 1.4,
-                    minHeight: { xs: "44px", md: "48px" },
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
+                    lineHeight: 1.35,
+                    minHeight: { xs: "40px", md: "42px" },
+                    display: "-webkit-box",
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: "vertical",
+                    overflow: "hidden",
                     wordBreak: "break-word",
                     overflowWrap: "anywhere",
                   }}
