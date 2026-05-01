@@ -356,9 +356,9 @@ export default function ResultCard({ result }) {
         sx={{ p: { xs: "20px 20px", md: "26px 32px" }, position: "relative", zIndex: 2 }}
       >
         <Stack
-          direction="row"
+          direction="column"
           spacing={2}
-          alignItems="flex-start"
+          alignItems="center"
           sx={{ animation: "fade-up 0.45s ease both" }}
         >
           <Box sx={{ position: "relative", flexShrink: 0, mt: 0.2 }}>
@@ -388,11 +388,11 @@ export default function ResultCard({ result }) {
             </Box>
           </Box>
 
-          <Box flex={1} minWidth={0}>
+          <Box flex={1} minWidth={0} sx={{ textAlign: "center" }}>
             <Stack
-              direction={{ xs: "column", sm: "row" }}
+              direction="column"
               spacing={1.2}
-              alignItems={{ xs: "flex-start", sm: "center" }}
+              alignItems="center"
               flexWrap="wrap"
             >
               <Box
@@ -436,17 +436,18 @@ export default function ResultCard({ result }) {
             </Stack>
 
             <Typography
-              sx={{
-                mt: 1,
-                color: themeBlueDeep,
+                sx={{
+                  mt: 1,
+                  color: themeBlueDeep,
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "0.92rem",
-                fontWeight: 700,
-                lineHeight: 1.6,
-                maxWidth: 760,
-              }}
-            >
-              {successMessage}
+                  fontSize: "0.92rem",
+                  fontWeight: 700,
+                  lineHeight: 1.6,
+                  maxWidth: 760,
+                  mx: "auto",
+                }}
+              >
+                {successMessage}
             </Typography>
           </Box>
         </Stack>

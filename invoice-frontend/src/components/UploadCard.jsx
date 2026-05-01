@@ -12,7 +12,6 @@ import {
 } from "@mui/material";
 import FolderOpenRoundedIcon from "@mui/icons-material/FolderOpenRounded";
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
-import RestartAltRoundedIcon from "@mui/icons-material/RestartAltRounded";
 import CloudUploadRoundedIcon from "@mui/icons-material/CloudUploadRounded";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import InsertDriveFileRoundedIcon from "@mui/icons-material/InsertDriveFileRounded";
@@ -792,38 +791,6 @@ export default function UploadCard({
               }}
             >
               {generateButtonText}
-            </Button>
-
-            {/* Reset button */}
-            <Button
-              variant="outlined"
-              size="large"
-              startIcon={<RestartAltRoundedIcon />}
-              onClick={onReset}
-              disabled={isRunning}
-              sx={{
-                minWidth: 110,
-                borderRadius: "14px",
-                textTransform: "none",
-                fontFamily: "'DM Sans', sans-serif",
-                fontWeight: 700,
-                fontSize: "0.92rem",
-                py: 1.3,
-                borderColor: "rgba(31,78,140,0.18)",
-                color: "#475569",
-                transition: "all 0.25s ease",
-                "&:hover": {
-                  borderColor: accentColor,
-                  color: accentColor,
-                  background: accentLight,
-                },
-                "&.Mui-disabled": {
-                  borderColor: "rgba(0,0,0,0.08)",
-                  color: "#CBD5E1",
-                },
-              }}
-            >
-              Reset
             </Button>
           </Stack>
         </Stack>

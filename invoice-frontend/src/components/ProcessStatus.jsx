@@ -326,7 +326,13 @@ export default function ProcessStatus({
             transition: "border-color 0.3s, box-shadow 0.3s",
           }}
         >
-          <Stack direction="row" spacing={1.5} alignItems="center">
+          <Stack
+            direction={selectedFile ? "row" : "column"}
+            spacing={1.5}
+            alignItems="center"
+            justifyContent="center"
+            sx={{ textAlign: selectedFile ? "left" : "center" }}
+          >
             <Box
               sx={{
                 width: 42,
@@ -345,16 +351,16 @@ export default function ProcessStatus({
               <DescriptionRoundedIcon sx={{ fontSize: 20, color: "#fff" }} />
             </Box>
 
-            <Box flex={1} minWidth={0}>
+            <Box flex={selectedFile ? 1 : "unset"} minWidth={0}>
               <Typography
                 sx={{
                   fontFamily: "'DM Sans', sans-serif",
                   fontWeight: 700,
                   fontSize: "0.87rem",
                   color: themeBlueDeep,
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
+                  overflow: selectedFile ? "hidden" : "visible",
+                  textOverflow: selectedFile ? "ellipsis" : "clip",
+                  whiteSpace: selectedFile ? "nowrap" : "normal",
                 }}
               >
                 {selectedFile ? selectedFile.name : "Belum ada file dipilih"}
@@ -365,9 +371,9 @@ export default function ProcessStatus({
                   fontSize: "0.76rem",
                   color: isFailed ? "#EF4444" : "#5A6B88",
                   mt: 0.3,
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
+                  overflow: selectedFile ? "hidden" : "visible",
+                  textOverflow: selectedFile ? "ellipsis" : "clip",
+                  whiteSpace: selectedFile ? "nowrap" : "normal",
                 }}
               >
                 {detailText}
