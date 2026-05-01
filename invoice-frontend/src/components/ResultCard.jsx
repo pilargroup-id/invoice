@@ -201,7 +201,6 @@ const statItems = (result) => [
     icon: <ReceiptLongRoundedIcon sx={{ fontSize: 20, color: "#059669" }} />,
     label: "Total Invoice",
     value: result?.total_invoices ?? 0,
-    large: true,
     accent: "rgba(16,185,129,0.10)",
     accentBorder: "rgba(16,185,129,0.18)",
   },
@@ -209,7 +208,6 @@ const statItems = (result) => [
     icon: <FolderOpenRoundedIcon sx={{ fontSize: 20, color: "#1F4E8C" }} />,
     label: "Output File",
     value: result?.output_file || "—",
-    large: false,
     accent: "rgba(31,78,140,0.10)",
     accentBorder: "rgba(31,78,140,0.18)",
   },
@@ -217,7 +215,6 @@ const statItems = (result) => [
     icon: <InsertDriveFileRoundedIcon sx={{ fontSize: 20, color: "#F4A940" }} />,
     label: "Status",
     value: result?.status || "—",
-    large: false,
     accent: "rgba(244,169,64,0.12)",
     accentBorder: "rgba(255,200,97,0.22)",
   },
@@ -457,7 +454,7 @@ export default function ResultCard({ result }) {
           spacing={1.5}
           sx={{ animation: "fade-up 0.45s ease 0.08s both" }}
         >
-          {statItems(safeResult).map(({ icon, label, value, large, accent, accentBorder }) => (
+          {statItems(safeResult).map(({ icon, label, value, accent, accentBorder }) => (
             <Grid item xs={12} md={4} key={label}>
               <Box
                 sx={{
@@ -467,13 +464,15 @@ export default function ResultCard({ result }) {
                   display: "flex",
                   flexDirection: "column",
                   gap: 0.8,
+                  justifyContent: "space-between",
                   background: "rgba(255,255,255,0.70)",
                   backdropFilter: "blur(10px)",
                   border: `1px solid ${accentBorder}`,
                   boxShadow: "0 4px 14px rgba(22,58,107,0.05)",
+                  textAlign: "center",
                 }}
               >
-                <Stack direction="row" spacing={1} alignItems="center">
+                <Stack direction="row" spacing={1} alignItems="center" justifyContent="center">
                   <Box
                     sx={{
                       width: 32,
@@ -504,19 +503,17 @@ export default function ResultCard({ result }) {
 
                 <Typography
                   sx={{
-                    fontFamily: large ? "'Sora', sans-serif" : "'DM Sans', sans-serif",
+                    fontFamily: "'DM Sans', sans-serif",
                     fontWeight: 800,
-                    fontSize: large ? "2rem" : "0.93rem",
+                    fontSize: { xs: "0.95rem", md: "1rem" },
                     color: themeBlueDeep,
-                    lineHeight: 1.1,
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap",
-                    ...(large && {
-                      background: `linear-gradient(135deg, ${themeBlueDeep}, ${themeBlue} 58%, ${themeGold})`,
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                    }),
+                    lineHeight: 1.4,
+                    minHeight: { xs: "44px", md: "48px" },
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    wordBreak: "break-word",
+                    overflowWrap: "anywhere",
                   }}
                 >
                   {value}
