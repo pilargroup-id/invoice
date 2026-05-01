@@ -352,13 +352,13 @@ export default function UploadCard({
       >
         {/* Header row */}
         <Stack
-          direction={{ xs: "column", sm: "row" }}
-          justifyContent="space-between"
-          alignItems={{ xs: "flex-start", sm: "center" }}
+          direction="column"
+          justifyContent="center"
+          alignItems={{ xs: "flex-start", md: "center" }}
           spacing={1.5}
           sx={{ animation: "fade-up 0.45s ease both" }}
         >
-          <Box>
+          <Box sx={{ textAlign: { xs: "left", md: "center" } }}>
             <Typography
               sx={{
                 fontFamily: "'Sora', sans-serif",
@@ -427,6 +427,7 @@ export default function UploadCard({
               border: `1px solid ${accentBorder}`,
               color: accentColor,
               transition: "all 0.4s ease",
+              alignSelf: { xs: "flex-start", md: "center" },
             }}
           />
         </Stack>
