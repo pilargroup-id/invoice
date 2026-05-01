@@ -30,6 +30,7 @@ function Header({
 }) {
   const hasSearch = Boolean(searchProps)
   const hasNotification = Boolean(notificationProps)
+  const isCompactActionRow = !hasSearch
   const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false)
   const [isDepartmentDropdownOpen, setIsDepartmentDropdownOpen] = useState(false)
   const [departmentDropdownStyle, setDepartmentDropdownStyle] = useState(null)
@@ -274,7 +275,11 @@ function Header({
       </div>
 
       <div className="header-breadcrumb">
-        <div className="header-breadcrumb-content">
+        <div
+          className={`header-breadcrumb-content${
+            isCompactActionRow ? ' header-breadcrumb-content--inline-mobile' : ''
+          }`}
+        >
           <nav
             className="breadcrumb-nav"
             aria-label={departmentFilterProps ? 'Filter divisi' : 'Breadcrumb'}
@@ -284,7 +289,11 @@ function Header({
           </nav>
 
           {hasSearch || hasNotification || onRefresh || onReset ? (
-            <div className="header-toolbar">
+            <div
+              className={`header-toolbar${
+                isCompactActionRow ? ' header-toolbar--inline-mobile' : ''
+              }`}
+            >
               {hasSearch ? (
                 <label
                   className="header-search header-search--compact"
