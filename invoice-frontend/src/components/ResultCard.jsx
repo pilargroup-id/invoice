@@ -458,13 +458,12 @@ export default function ResultCard({ result }) {
           }}
         >
           {statItems(safeResult).map(({ icon, label, value, accent, accentBorder }) => (
-            <Grid item xs={12} md={4} key={label}>
+            <Grid item xs={12} md={4} key={label} sx={{ display: "flex" }}>
               <Box
                 sx={{
                   borderRadius: "16px",
                   p: { xs: "13px 15px", md: "14px 16px" },
-                  height: "100%",
-                  minHeight: { xs: 112, md: 118 },
+                  width: "100%",
                   display: "flex",
                   flexDirection: "column",
                   gap: 0.7,
@@ -512,7 +511,6 @@ export default function ResultCard({ result }) {
                     fontSize: { xs: "0.95rem", md: "1rem" },
                     color: themeBlueDeep,
                     lineHeight: 1.35,
-                    minHeight: { xs: "40px", md: "42px" },
                     display: "-webkit-box",
                     WebkitLineClamp: 2,
                     WebkitBoxOrient: "vertical",
