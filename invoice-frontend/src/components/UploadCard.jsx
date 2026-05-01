@@ -179,7 +179,7 @@ function BgDecor({ accentColor, iconColor }) {
           width: 260,
           height: 260,
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(35,57,113,0.12) 0%, transparent 72%)",
+          background: "radial-gradient(circle, rgba(31,78,140,0.12) 0%, transparent 72%)",
         }}
       />
     </Box>
@@ -199,6 +199,9 @@ export default function UploadCard({
   current = 0,
   total = 0,
 }) {
+  const themeBlue = "#1F4E8C";
+  const themeBlueDeep = "#163A6B";
+  const themeBlueSoft = "#2F6FB2";
   const fileInputRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
 
@@ -208,23 +211,23 @@ export default function UploadCard({
   const isFailed = jobStatus === "failed";
 
   // ── color tokens ──
-  const accentColor = isFailed ? "#EF4444" : isCompleted ? "#10B981" : "#233971";
-  const iconColor = isFailed ? "#EF4444" : isCompleted ? "#10B981" : "#233971";
+  const accentColor = isFailed ? "#EF4444" : isCompleted ? "#10B981" : themeBlue;
+  const iconColor = isFailed ? "#EF4444" : isCompleted ? "#10B981" : themeBlue;
   const accentLight = isFailed
     ? "rgba(239,68,68,0.10)"
     : isCompleted
     ? "rgba(16,185,129,0.10)"
-    : "rgba(35,57,113,0.10)";
+    : "rgba(244,169,64,0.14)";
   const accentBorder = isFailed
     ? "rgba(239,68,68,0.22)"
     : isCompleted
     ? "rgba(16,185,129,0.22)"
-    : "rgba(35,57,113,0.24)";
+    : "rgba(255,200,97,0.26)";
   const accentGrad = isFailed
     ? "linear-gradient(135deg, #EF4444, #F87171)"
     : isCompleted
     ? "linear-gradient(135deg, #10B981, #34D399)"
-    : "linear-gradient(135deg, #233971, #35529a)";
+    : `linear-gradient(135deg, ${themeBlueDeep}, ${themeBlue} 58%, ${themeBlueSoft})`;
 
   const handleOpenFile = () => {
     if (isRunning) return;
@@ -282,7 +285,7 @@ export default function UploadCard({
     ? accentColor
     : selectedFile
     ? accentBorder
-    : "rgba(35,57,113,0.16)";
+    : "rgba(31,78,140,0.18)";
 
   return (
     <Paper
@@ -291,12 +294,15 @@ export default function UploadCard({
         borderRadius: "24px",
         overflow: "hidden",
         position: "relative",
-        background:
-          "linear-gradient(145deg, rgba(247,249,255,0.98) 0%, rgba(236,242,255,0.98) 48%, rgba(223,232,252,0.98) 100%)",
+        background: `
+          radial-gradient(circle at top right, rgba(255,200,97,0.16), transparent 28%),
+          radial-gradient(circle at 18% 14%, rgba(47,111,178,0.12), transparent 24%),
+          linear-gradient(160deg, rgba(255,255,255,0.98) 0%, rgba(247,251,255,0.99) 52%, rgba(232,240,249,0.98) 100%)
+        `,
         boxShadow: `
           0 0 0 1px ${accentBorder},
           0 4px 6px -1px rgba(0,0,0,0.04),
-          0 20px 48px -8px rgba(35,57,113,0.16)
+          0 20px 48px -8px rgba(22,58,107,0.14)
         `,
         transition: "box-shadow 0.5s ease",
 
@@ -358,7 +364,7 @@ export default function UploadCard({
                 fontFamily: "'Sora', sans-serif",
                 fontWeight: 800,
                 fontSize: "1.08rem",
-                color: "#0F172A",
+                color: themeBlueDeep,
                 letterSpacing: "-0.02em",
               }}
             >
@@ -369,7 +375,7 @@ export default function UploadCard({
                 mt: 0.35,
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "0.81rem",
-                color: isFailed ? "#DC2626" : "#5B6B86",
+                color: isFailed ? "#DC2626" : "#5A6B88",
                 transition: "color 0.3s",
               }}
             >
@@ -397,7 +403,7 @@ export default function UploadCard({
                 />
               ) : (
                 <CloudUploadRoundedIcon
-                  sx={{ fontSize: "15px !important", color: "#7C8DA8 !important" }}
+                  sx={{ fontSize: "15px !important", color: "#7A8CAC !important" }}
                 />
               )
             }
@@ -443,17 +449,17 @@ export default function UploadCard({
             background: isFailed
               ? "rgba(239,68,68,0.03)"
               : isDragging
-              ? "rgba(35,57,113,0.08)"
+              ? "rgba(31,78,140,0.08)"
               : selectedFile
-              ? "rgba(35,57,113,0.05)"
-              : "linear-gradient(180deg, rgba(226,235,252,0.82) 0%, rgba(247,250,255,0.94) 100%)",
+              ? "rgba(31,78,140,0.05)"
+              : "linear-gradient(180deg, rgba(232,240,249,0.88) 0%, rgba(247,251,255,0.96) 100%)",
             transition: "all 0.25s ease",
             animation: "fade-up 0.45s ease 0.07s both",
             "&:hover": isRunning
               ? {}
               : {
                   borderColor: accentColor,
-                  background: "rgba(35,57,113,0.08)",
+                  background: "rgba(31,78,140,0.08)",
                   "& .upload-icon-box": {
                     transform: "translateY(-4px)",
                     boxShadow: `0 16px 36px ${accentLight}`,
@@ -478,7 +484,7 @@ export default function UploadCard({
                 width: "55%",
                 height: "100%",
                 background:
-                  "linear-gradient(90deg, transparent, rgba(35,57,113,0.08), transparent)",
+                  "linear-gradient(90deg, transparent, rgba(31,78,140,0.10), transparent)",
                 animation: "shimmer 1.2s ease-in-out infinite",
                 pointerEvents: "none",
               }}
@@ -524,7 +530,7 @@ export default function UploadCard({
                     ? "0 12px 30px rgba(239,68,68,0.22)"
                     : selectedFile
                     ? "0 12px 30px rgba(16,185,129,0.28)"
-                    : "0 12px 30px rgba(35,57,113,0.30)",
+                    : "0 12px 30px rgba(22,58,107,0.30)",
                   transition: "all 0.3s ease",
                   animation: isRunning ? "none" : "float 4s ease-in-out infinite",
                   position: "relative",
@@ -549,7 +555,7 @@ export default function UploadCard({
                   fontFamily: "'Sora', sans-serif",
                   fontWeight: 700,
                   fontSize: "1rem",
-                  color: isFailed ? "#DC2626" : isDragging ? accentColor : "#0F172A",
+                  color: isFailed ? "#DC2626" : isDragging ? accentColor : themeBlueDeep,
                   transition: "color 0.2s ease",
                 }}
               >
@@ -564,7 +570,7 @@ export default function UploadCard({
               <Typography
                 sx={{
                   mt: 0.4,
-                  color: "#7D8CA5",
+                  color: "#6F84A6",
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "0.8rem",
                 }}
@@ -601,12 +607,12 @@ export default function UploadCard({
               borderRadius: "16px",
               p: "13px 17px",
               animation: "pop-in 0.4s cubic-bezier(0.34,1.56,0.64,1) both",
-              background: "rgba(255,255,255,0.76)",
+              background: "rgba(255,255,255,0.70)",
               backdropFilter: "blur(12px)",
               border: isRunning
                 ? `1px solid ${accentBorder}`
-                : "1px solid rgba(189,205,235,0.72)",
-              boxShadow: isRunning ? `0 0 0 3px ${accentLight}` : "0 1px 4px rgba(0,0,0,0.05)",
+                : "1px solid rgba(31,78,140,0.12)",
+              boxShadow: isRunning ? `0 0 0 3px ${accentLight}` : "0 4px 14px rgba(22,58,107,0.05)",
               transition: "border-color 0.3s, box-shadow 0.3s",
             }}
           >
@@ -634,7 +640,7 @@ export default function UploadCard({
                     fontFamily: "'DM Sans', sans-serif",
                     fontWeight: 700,
                     fontSize: "0.87rem",
-                    color: "#0F172A",
+                    color: themeBlueDeep,
                     overflow: "hidden",
                     textOverflow: "ellipsis",
                     whiteSpace: "nowrap",
@@ -646,7 +652,7 @@ export default function UploadCard({
                   sx={{
                     fontFamily: "'DM Sans', sans-serif",
                     fontSize: "0.76rem",
-                    color: "#64748B",
+                    color: "#5A6B88",
                     mt: 0.3,
                   }}
                 >
@@ -682,7 +688,7 @@ export default function UploadCard({
 
         <Divider
           sx={{
-            borderColor: "rgba(35,57,113,0.08)",
+            borderColor: "rgba(31,78,140,0.12)",
             animation: "fade-up 0.45s ease 0.18s both",
           }}
         />
@@ -713,9 +719,9 @@ export default function UploadCard({
                 fontFamily: "'DM Sans', sans-serif",
                 fontWeight: 500,
                 fontSize: "0.9rem",
-                background: "rgba(255,255,255,0.82)",
+                background: "rgba(255,255,255,0.76)",
                 backdropFilter: "blur(8px)",
-                "& fieldset": { borderColor: "rgba(35,57,113,0.14)" },
+                "& fieldset": { borderColor: "rgba(31,78,140,0.14)" },
                 "&:hover fieldset": { borderColor: accentBorder },
                 "&.Mui-focused fieldset": { borderColor: accentColor },
               },
@@ -772,14 +778,14 @@ export default function UploadCard({
                 },
                 "&:hover:not(.Mui-disabled)": {
                   boxShadow: isFailed
-                    ? "0 8px 28px rgba(239,68,68,0.36)"
-                    : isCompleted
-                    ? "0 8px 28px rgba(16,185,129,0.36)"
-                    : "0 8px 28px rgba(35,57,113,0.44)",
+                  ? "0 8px 28px rgba(239,68,68,0.36)"
+                  : isCompleted
+                  ? "0 8px 28px rgba(16,185,129,0.36)"
+                  : "0 8px 28px rgba(22,58,107,0.40)",
                   "&::after": { left: "120%" },
                 },
                 "&.Mui-disabled": {
-                  background: "rgba(35,57,113,0.08)",
+                  background: "rgba(31,78,140,0.08)",
                   boxShadow: "none",
                 },
               }}
@@ -802,7 +808,7 @@ export default function UploadCard({
                 fontWeight: 700,
                 fontSize: "0.92rem",
                 py: 1.3,
-                borderColor: "rgba(35,57,113,0.18)",
+                borderColor: "rgba(31,78,140,0.18)",
                 color: "#475569",
                 transition: "all 0.25s ease",
                 "&:hover": {

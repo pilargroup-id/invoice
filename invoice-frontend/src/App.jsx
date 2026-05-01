@@ -265,6 +265,7 @@ function InvoiceApp() {
           breadcrumb={[{ label: "Invoice Generator", active: true }]}
           showMenuButton
           onMenuToggle={() => setSidebarMobileOpen((v) => !v)}
+          onReset={handleReset}
         />
 
         <main className="dashboard-main">

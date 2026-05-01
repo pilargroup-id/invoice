@@ -786,6 +786,62 @@ select {
   border-radius: 10px;
 }
 
+.header-action-button {
+  position: relative;
+  overflow: hidden;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(244, 169, 64, 0.96), rgba(255, 200, 97, 0.92));
+  color: var(--primary-blue);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 10px 22px rgba(244, 169, 64, 0.22);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+.header-action-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.34), transparent);
+  transition: left 0.45s ease;
+}
+
+.header-action-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 26px rgba(244, 169, 64, 0.28);
+  filter: saturate(1.04);
+}
+
+.header-action-button:hover::before {
+  left: 130%;
+}
+
+.header-action-button:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 4px rgba(255, 200, 97, 0.18),
+    0 14px 26px rgba(244, 169, 64, 0.28);
+}
+
+.header-action-button span {
+  white-space: nowrap;
+}
+
 .header-modal-overlay {
   position: fixed;
   inset: 0;
@@ -3213,9 +3269,18 @@ select {
     display: none;
   }
 
+  .header-action-button span,
   .add-board-button span,
   .user-info {
     display: none;
+  }
+
+  .header-action-button {
+    width: 2.75rem;
+    min-width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border-radius: 50%;
   }
 
   .add-board-button {

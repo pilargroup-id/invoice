@@ -102,7 +102,7 @@ function BgDecor({ accentColor, isDone, isFailed }) {
           height: 240,
           borderRadius: "50%",
           background: `radial-gradient(circle, ${
-            isDone ? "#10B98112" : "#23397114"
+            isDone ? "#10B98112" : "#1F4E8C14"
           } 0%, transparent 72%)`,
           animation: "orb-drift 14s ease-in-out infinite reverse",
         }}
@@ -130,6 +130,10 @@ export default function ProcessStatus({
   total = 0,
   error = "",
 }) {
+  const themeBlue = "#1F4E8C";
+  const themeBlueDeep = "#163A6B";
+  const themeBlueSoft = "#2F6FB2";
+  const themeGold = "#F4A940";
   const normalizedProgress = Math.max(0, Math.min(100, Number(progress) || 0));
   const isQueued = jobStatus === "queued";
   const isFailed = jobStatus === "failed";
@@ -151,27 +155,27 @@ export default function ProcessStatus({
 
   const stepProgressValue = isFailed ? 0 : normalizedProgress;
 
-  const accentColor = isFailed ? "#EF4444" : isDone ? "#10B981" : "#233971";
+  const accentColor = isFailed ? "#EF4444" : isDone ? "#10B981" : themeBlue;
   const accentLight = isFailed
     ? "rgba(239,68,68,0.10)"
     : isDone
       ? "rgba(16,185,129,0.10)"
-      : "rgba(35,57,113,0.10)";
+      : "rgba(244,169,64,0.14)";
   const accentBorder = isFailed
     ? "rgba(239,68,68,0.22)"
     : isDone
       ? "rgba(16,185,129,0.22)"
-      : "rgba(35,57,113,0.20)";
+      : "rgba(255,200,97,0.26)";
   const accentGrad = isFailed
     ? "linear-gradient(135deg, #EF4444, #F87171)"
     : isDone
       ? "linear-gradient(135deg, #10B981, #34D399)"
-      : "linear-gradient(135deg, #233971, #35529A)";
+      : `linear-gradient(135deg, ${themeBlueDeep}, ${themeBlue} 58%, ${themeBlueSoft})`;
   const barGrad = isFailed
     ? "linear-gradient(90deg, #EF4444, #F87171)"
     : isDone
       ? "linear-gradient(90deg, #10B981, #34D399)"
-      : "linear-gradient(90deg, #233971, #2F4B8F, #4468B3)";
+      : `linear-gradient(90deg, ${themeBlueDeep}, ${themeBlue} 46%, ${themeGold} 100%)`;
 
   return (
     <Paper
@@ -180,12 +184,15 @@ export default function ProcessStatus({
         borderRadius: "26px",
         overflow: "hidden",
         position: "relative",
-        background:
-          "linear-gradient(145deg, rgba(246,249,255,0.98) 0%, rgba(236,242,255,0.98) 55%, rgba(223,232,252,0.98) 100%)",
+        background: `
+          radial-gradient(circle at top right, rgba(255,200,97,0.16), transparent 28%),
+          radial-gradient(circle at 18% 14%, rgba(47,111,178,0.12), transparent 24%),
+          linear-gradient(160deg, rgba(255,255,255,0.98) 0%, rgba(247,251,255,0.99) 52%, rgba(232,240,249,0.98) 100%)
+        `,
         boxShadow: `
           0 0 0 1px ${accentBorder},
-          0 10px 26px rgba(35,57,113,0.10),
-          0 24px 54px rgba(35,57,113,0.12)
+          0 10px 26px rgba(22,58,107,0.10),
+          0 24px 54px rgba(8,20,42,0.10)
         `,
         transition: "box-shadow 0.5s ease",
         "@keyframes spin": {
@@ -243,7 +250,7 @@ export default function ProcessStatus({
                 fontFamily: "'Sora', sans-serif",
                 fontWeight: 800,
                 fontSize: "1.08rem",
-                color: "#0F172A",
+                color: themeBlueDeep,
                 letterSpacing: "-0.02em",
               }}
             >
@@ -254,7 +261,7 @@ export default function ProcessStatus({
                 mt: 0.35,
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "0.81rem",
-                color: "#5F6F89",
+                color: "#5A6B88",
               }}
             >
               Pantau status upload dan generate invoice secara realtime.
@@ -281,7 +288,7 @@ export default function ProcessStatus({
                 />
               ) : (
                 <HourglassEmptyRoundedIcon
-                  sx={{ fontSize: "15px !important", color: "#7D8CA5 !important" }}
+                  sx={{ fontSize: "15px !important", color: "#7A8CAC !important" }}
                 />
               )
             }
@@ -305,16 +312,16 @@ export default function ProcessStatus({
             borderRadius: "18px",
             p: "14px 17px",
             animation: "fade-up 0.45s ease 0.07s both",
-            background: "rgba(255,255,255,0.76)",
+            background: "rgba(255,255,255,0.70)",
             backdropFilter: "blur(14px)",
             border: isRunning
               ? `1px solid ${accentBorder}`
               : isFailed
                 ? "1px solid rgba(239,68,68,0.2)"
-                : "1px solid rgba(188,202,232,0.78)",
+                : "1px solid rgba(31,78,140,0.12)",
             boxShadow: isRunning
               ? `0 0 0 4px ${accentLight}`
-              : "0 6px 18px rgba(15,23,42,0.05)",
+              : "0 6px 18px rgba(22,58,107,0.06)",
             transition: "border-color 0.3s, box-shadow 0.3s",
           }}
         >
@@ -328,7 +335,9 @@ export default function ProcessStatus({
                 alignItems: "center",
                 justifyContent: "center",
                 flexShrink: 0,
-                background: selectedFile ? accentGrad : "linear-gradient(135deg,#E2E8F0,#CBD5E1)",
+                background: selectedFile
+                  ? accentGrad
+                  : "linear-gradient(135deg, rgba(31,78,140,0.78), rgba(47,111,178,0.64))",
                 boxShadow: selectedFile ? `0 10px 20px ${accentLight}` : "none",
               }}
             >
@@ -341,7 +350,7 @@ export default function ProcessStatus({
                   fontFamily: "'DM Sans', sans-serif",
                   fontWeight: 700,
                   fontSize: "0.87rem",
-                  color: "#0F172A",
+                  color: themeBlueDeep,
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   whiteSpace: "nowrap",
@@ -353,7 +362,7 @@ export default function ProcessStatus({
                 sx={{
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "0.76rem",
-                  color: isFailed ? "#EF4444" : "#64748B",
+                  color: isFailed ? "#EF4444" : "#5A6B88",
                   mt: 0.3,
                   overflow: "hidden",
                   textOverflow: "ellipsis",
@@ -402,10 +411,10 @@ export default function ProcessStatus({
                 flex: 1,
                 borderRadius: "16px",
                 p: "14px 15px",
-                background: "rgba(255,255,255,0.72)",
+                background: "rgba(255,255,255,0.68)",
                 backdropFilter: "blur(10px)",
-                border: "1px solid rgba(188,202,232,0.68)",
-                boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
+                border: "1px solid rgba(31,78,140,0.12)",
+                boxShadow: "0 4px 14px rgba(22,58,107,0.05)",
                 position: "relative",
                 overflow: "hidden",
                 "&::after": isRunning && !isFailed
@@ -427,7 +436,7 @@ export default function ProcessStatus({
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "0.67rem",
                   fontWeight: 700,
-                  color: "#8A99B2",
+                  color: "#6D7F9D",
                   letterSpacing: "0.09em",
                   textTransform: "uppercase",
                   mb: 0.5,
@@ -453,10 +462,10 @@ export default function ProcessStatus({
                 minWidth: { xs: "100%", md: 165 },
                 borderRadius: "16px",
                 p: "14px 15px",
-                background: "rgba(255,255,255,0.72)",
+                background: "rgba(255,255,255,0.68)",
                 backdropFilter: "blur(10px)",
-                border: "1px solid rgba(188,202,232,0.68)",
-                boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
+                border: "1px solid rgba(31,78,140,0.12)",
+                boxShadow: "0 4px 14px rgba(22,58,107,0.05)",
               }}
             >
               <Typography
@@ -464,7 +473,7 @@ export default function ProcessStatus({
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "0.67rem",
                   fontWeight: 700,
-                  color: "#8A99B2",
+                  color: "#6D7F9D",
                   letterSpacing: "0.09em",
                   textTransform: "uppercase",
                   mb: 0.5,
@@ -489,7 +498,7 @@ export default function ProcessStatus({
                     sx={{
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: "0.82rem",
-                      color: "#94A3B8",
+                      color: "#6F84A6",
                       fontWeight: 500,
                     }}
                   >
@@ -509,7 +518,7 @@ export default function ProcessStatus({
                   fontFamily: "'DM Sans', sans-serif",
                   fontWeight: 700,
                   fontSize: "0.8rem",
-                  color: "#334155",
+                  color: themeBlueDeep,
                   letterSpacing: "0.02em",
                 }}
               >
@@ -545,7 +554,7 @@ export default function ProcessStatus({
                   fontFamily: "'DM Sans', sans-serif",
                   fontWeight: 600,
                   fontSize: "0.76rem",
-                  color: "#94A3B8",
+                  color: "#6F84A6",
                   mb: "2px",
                 }}
               >
@@ -559,7 +568,7 @@ export default function ProcessStatus({
               position: "relative",
               height: 10,
               borderRadius: 999,
-              background: "rgba(35,57,113,0.08)",
+              background: "rgba(31,78,140,0.10)",
               overflow: "hidden",
             }}
           >
@@ -604,7 +613,7 @@ export default function ProcessStatus({
                       width: 7,
                       height: 7,
                       borderRadius: "50%",
-                      bgcolor: active ? accentColor : "rgba(35,57,113,0.12)",
+                      bgcolor: active ? accentColor : "rgba(31,78,140,0.16)",
                       transition: "all 0.35s ease",
                       transform: isCurrent && isRunning ? "scale(1.5)" : "scale(1)",
                       boxShadow: active
@@ -619,7 +628,7 @@ export default function ProcessStatus({
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: "0.61rem",
                       fontWeight: active ? 700 : 500,
-                      color: active ? accentColor : "#94A3B8",
+                      color: active ? accentColor : "#6F84A6",
                       transition: "all 0.35s ease",
                     }}
                   >

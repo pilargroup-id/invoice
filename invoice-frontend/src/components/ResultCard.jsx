@@ -136,7 +136,7 @@ function BgDecor() {
           width: 220,
           height: 220,
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(14,165,233,0.10) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(31,78,140,0.10) 0%, transparent 70%)",
         }}
       />
     </Box>
@@ -206,24 +206,28 @@ const statItems = (result) => [
     accentBorder: "rgba(16,185,129,0.18)",
   },
   {
-    icon: <FolderOpenRoundedIcon sx={{ fontSize: 20, color: "#0EA5E9" }} />,
+    icon: <FolderOpenRoundedIcon sx={{ fontSize: 20, color: "#1F4E8C" }} />,
     label: "Output File",
     value: result?.output_file || "—",
     large: false,
-    accent: "rgba(14,165,233,0.10)",
-    accentBorder: "rgba(14,165,233,0.18)",
+    accent: "rgba(31,78,140,0.10)",
+    accentBorder: "rgba(31,78,140,0.18)",
   },
   {
-    icon: <InsertDriveFileRoundedIcon sx={{ fontSize: 20, color: "#8B5CF6" }} />,
+    icon: <InsertDriveFileRoundedIcon sx={{ fontSize: 20, color: "#F4A940" }} />,
     label: "Status",
     value: result?.status || "—",
     large: false,
-    accent: "rgba(139,92,246,0.10)",
-    accentBorder: "rgba(139,92,246,0.18)",
+    accent: "rgba(244,169,64,0.12)",
+    accentBorder: "rgba(255,200,97,0.22)",
   },
 ];
 
 export default function ResultCard({ result }) {
+  const themeBlue = "#1F4E8C";
+  const themeBlueDeep = "#163A6B";
+  const themeBlueSoft = "#2F6FB2";
+  const themeGold = "#F4A940";
   const safeResult = result || {};
   const previewUrl = safeResult.preview_url || "";
   const downloadUrl = safeResult.download_url || "";
@@ -275,11 +279,15 @@ export default function ResultCard({ result }) {
         borderRadius: "24px",
         overflow: "hidden",
         position: "relative",
-        background: "linear-gradient(150deg, #F0FDF8 0%, #ffffff 50%, #F5FFFE 100%)",
+        background: `
+          radial-gradient(circle at top right, rgba(255,200,97,0.16), transparent 28%),
+          radial-gradient(circle at 18% 14%, rgba(47,111,178,0.12), transparent 24%),
+          linear-gradient(160deg, rgba(255,255,255,0.98) 0%, rgba(247,251,255,0.99) 52%, rgba(232,240,249,0.98) 100%)
+        `,
         boxShadow: `
-          0 0 0 1px rgba(16,185,129,0.13),
+          0 0 0 1px rgba(255,200,97,0.24),
           0 4px 6px -1px rgba(0,0,0,0.03),
-          0 20px 48px -8px rgba(16,185,129,0.13)
+          0 20px 48px -8px rgba(22,58,107,0.14)
         `,
 
         "@keyframes fade-up": {
@@ -337,7 +345,7 @@ export default function ResultCard({ result }) {
       <Box
         sx={{
           height: "3px",
-          background: "linear-gradient(90deg, #059669, #10B981, #34D399, #6EE7B7)",
+          background: `linear-gradient(90deg, ${themeBlueDeep}, ${themeBlue} 34%, ${themeGold} 70%, #10B981 100%)`,
           position: "relative",
           zIndex: 2,
         }}
@@ -430,7 +438,7 @@ export default function ResultCard({ result }) {
             <Typography
               sx={{
                 mt: 1,
-                color: "#0F172A",
+                color: themeBlueDeep,
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "0.92rem",
                 fontWeight: 700,
@@ -458,10 +466,10 @@ export default function ResultCard({ result }) {
                   display: "flex",
                   flexDirection: "column",
                   gap: 0.8,
-                  background: "rgba(255,255,255,0.72)",
+                  background: "rgba(255,255,255,0.70)",
                   backdropFilter: "blur(10px)",
                   border: `1px solid ${accentBorder}`,
-                  boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
+                  boxShadow: "0 4px 14px rgba(22,58,107,0.05)",
                 }}
               >
                 <Stack direction="row" spacing={1} alignItems="center">
@@ -484,7 +492,7 @@ export default function ResultCard({ result }) {
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: "0.72rem",
                       fontWeight: 600,
-                      color: "#64748B",
+                      color: "#5A6B88",
                       textTransform: "uppercase",
                       letterSpacing: "0.05em",
                     }}
@@ -498,13 +506,13 @@ export default function ResultCard({ result }) {
                     fontFamily: large ? "'Sora', sans-serif" : "'DM Sans', sans-serif",
                     fontWeight: 800,
                     fontSize: large ? "2rem" : "0.93rem",
-                    color: "#0F172A",
+                    color: themeBlueDeep,
                     lineHeight: 1.1,
                     overflow: "hidden",
                     textOverflow: "ellipsis",
                     whiteSpace: "nowrap",
                     ...(large && {
-                      background: "linear-gradient(135deg, #059669, #10B981)",
+                      background: `linear-gradient(135deg, ${themeBlueDeep}, ${themeBlue} 58%, ${themeGold})`,
                       WebkitBackgroundClip: "text",
                       WebkitTextFillColor: "transparent",
                     }),
@@ -519,7 +527,7 @@ export default function ResultCard({ result }) {
 
         <Divider
           sx={{
-            borderColor: "rgba(16,185,129,0.10)",
+            borderColor: "rgba(31,78,140,0.12)",
             animation: "fade-up 0.45s ease 0.16s both",
           }}
         />
@@ -536,7 +544,7 @@ export default function ResultCard({ result }) {
                 fontFamily: "'Sora', sans-serif",
                 fontWeight: 800,
                 fontSize: "0.93rem",
-                color: "#0F172A",
+                color: themeBlueDeep,
                 letterSpacing: "-0.01em",
               }}
             >
@@ -565,10 +573,10 @@ export default function ResultCard({ result }) {
             sx={{
               borderRadius: "16px",
               overflow: "hidden",
-              background: "rgba(255,255,255,0.75)",
+              background: "rgba(255,255,255,0.72)",
               backdropFilter: "blur(10px)",
-              border: "1px solid rgba(226,232,240,0.85)",
-              boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
+              border: "1px solid rgba(31,78,140,0.12)",
+              boxShadow: "0 4px 14px rgba(22,58,107,0.05)",
             }}
           >
             <List disablePadding>
@@ -583,7 +591,7 @@ export default function ResultCard({ result }) {
                       px: 2,
                       cursor: canPreview ? "pointer" : "default",
                       transition: "background 0.15s ease",
-                      "&:hover": canPreview ? { background: "rgba(16,185,129,0.04)" } : {},
+                      "&:hover": canPreview ? { background: "rgba(31,78,140,0.04)" } : {},
                     }}
                   >
                     <ListItemIcon sx={{ minWidth: 38 }}>
@@ -610,7 +618,7 @@ export default function ResultCard({ result }) {
                             fontFamily: "'DM Sans', sans-serif",
                             fontWeight: 700,
                             fontSize: "0.85rem",
-                            color: "#0F172A",
+                            color: themeBlueDeep,
                           }}
                         >
                           {file}
@@ -621,7 +629,7 @@ export default function ResultCard({ result }) {
                           sx={{
                             fontFamily: "'DM Sans', sans-serif",
                             fontSize: "0.73rem",
-                            color: "#94A3B8",
+                            color: "#6F84A6",
                           }}
                         >
                           {canPreview ? "Klik untuk membuka file PDF" : "File belum siap dibuka"}
@@ -654,7 +662,7 @@ export default function ResultCard({ result }) {
                           fontFamily: "'DM Sans', sans-serif",
                           fontWeight: 600,
                           fontSize: "0.88rem",
-                          color: "#64748B",
+                          color: "#5A6B88",
                         }}
                       >
                         Tidak ada file yang ditampilkan
@@ -687,16 +695,16 @@ export default function ResultCard({ result }) {
               fontSize: "0.91rem",
               px: 3,
               py: 1.25,
-              background: "linear-gradient(135deg, #059669 0%, #10B981 100%)",
-              boxShadow: "0 6px 20px rgba(16,185,129,0.32)",
+              background: `linear-gradient(135deg, ${themeBlueDeep} 0%, ${themeBlue} 58%, ${themeBlueSoft} 100%)`,
+              boxShadow: "0 6px 20px rgba(22,58,107,0.30)",
               "&:hover": {
-                boxShadow: "0 8px 28px rgba(16,185,129,0.42)",
-                background: "linear-gradient(135deg, #047857 0%, #059669 100%)",
+                boxShadow: "0 8px 28px rgba(22,58,107,0.40)",
+                background: `linear-gradient(135deg, ${themeBlueDeep} 0%, ${themeBlue} 50%, ${themeGold} 100%)`,
               },
               "&.Mui-disabled": {
-                background: "rgba(14,60,110,0.08)",
+                background: "rgba(31,78,140,0.08)",
                 boxShadow: "none",
-                color: "#94A3B8",
+                color: "#6F84A6",
               },
             }}
           >
@@ -717,14 +725,14 @@ export default function ResultCard({ result }) {
               fontSize: "0.91rem",
               px: 3,
               py: 1.25,
-              borderColor: "rgba(16,185,129,0.28)",
-              color: "#059669",
+              borderColor: "rgba(31,78,140,0.22)",
+              color: themeBlueDeep,
               background: "rgba(255,255,255,0.7)",
               backdropFilter: "blur(8px)",
               "&:hover": {
-                borderColor: "#10B981",
-                background: "rgba(16,185,129,0.05)",
-                boxShadow: "0 4px 14px rgba(16,185,129,0.14)",
+                borderColor: themeBlue,
+                background: "rgba(31,78,140,0.05)",
+                boxShadow: "0 4px 14px rgba(22,58,107,0.14)",
               },
               "&.Mui-disabled": {
                 borderColor: "rgba(0,0,0,0.07)",

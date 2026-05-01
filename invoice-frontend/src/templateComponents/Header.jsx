@@ -23,6 +23,7 @@ function Header({
   onMenuToggle,
   notificationProps,
   onRefresh,
+  onReset,
   searchProps,
   showMenuButton = false,
   departmentFilterProps,
@@ -282,7 +283,7 @@ function Header({
             {renderBreadcrumb()}
           </nav>
 
-          {hasSearch || hasNotification || onRefresh ? (
+          {hasSearch || hasNotification || onRefresh || onReset ? (
             <div className="header-toolbar">
               {hasSearch ? (
                 <label
@@ -323,6 +324,19 @@ function Header({
                   onClick={onRefresh}
                 >
                   <RefreshCw05 size={16} />
+                </button>
+              ) : null}
+
+              {onReset ? (
+                <button
+                  type="button"
+                  className="header-action-button"
+                  aria-label="Reset form invoice"
+                  title="Reset form invoice"
+                  onClick={onReset}
+                >
+                  <RefreshCw05 size={16} />
+                  <span>Reset</span>
                 </button>
               ) : null}
             </div>
