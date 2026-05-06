@@ -102,6 +102,7 @@ export function AuthProvider({ children }) {
         department: payload.department,
         job_position: payload.job_position,
         apps: payload.apps,
+        cv: payload.cv,
       };
 
       localStorage.setItem(TOKEN_KEY, tkn);
@@ -125,9 +126,9 @@ export function AuthProvider({ children }) {
   }, []);
 
   const redirectToLogin = useCallback(() => {
-    const returnUrl = encodeURIComponent(window.location.origin);
-    window.location.href = `${PILARGROUP_URL}?redirect=${returnUrl}`;
-  }, []);
+    const returnUrl = encodeURIComponent(window.location.origin)
+    window.location.href = `${PILARGROUP_URL}?return_url=${returnUrl}`
+  }, [])
 
   return (
     <AuthContext.Provider

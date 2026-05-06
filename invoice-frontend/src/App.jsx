@@ -13,6 +13,7 @@ import { AuthProvider, useAuth } from "./auth/AuthContext";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import { BackgroundMain, Header, Sidebar } from "./templateComponents";
 import "./templateComponents/templateComponents.css";
+import { useSessionGuard } from './hooks/useSessionGuard'
 
 const API_BASE = "";
 const POLL_INTERVAL_MS = 1500;
@@ -57,6 +58,12 @@ const snackbarConfig = {
 
 function InvoiceApp() {
   const { user, logout } = useAuth();
+
+  useSessionGuard(() => {
+    logout()
+    const returnUrl = encodeURIComponent(window.location.origin)
+    window.location.href = `${import.meta.env.VITE_PILARGROUP_URL}?return_url=${returnUrl}`
+  })
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [sidebarMobileOpen, setSidebarMobileOpen] = useState(false);
 
