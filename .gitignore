@@ -1,4 +1,9 @@
 # Byte-compiled / optimized / DLL files
+backend_invoice/outputs/
+backend_invoice/progress/
+backend_invoice/uploads/
+backend_invoice/__pycache__/
+backend_invoice/frontend_dist/
 __pycache__/
 *.py[codz]
 *$py.class
