@@ -1,5 +1,7 @@
 from dotenv import load_dotenv
+load_dotenv(".env.local", override=True)
 load_dotenv()
+import os
 from pathlib import Path
 import shutil
 import threading
@@ -24,6 +26,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+if os.getenv("APP_ENV", "production") == "local":
+    from dev_auth import router as dev_router
+    app.include_router(dev_router, prefix="/api")
+
 BASE_DIR = Path(__file__).resolve().parent
 UPLOAD_DIR = BASE_DIR / "uploads"
 OUTPUT_DIR = BASE_DIR / "outputs"
@@ -34,7 +40,6 @@ OUTPUT_DIR.mkdir(exist_ok=True)
 
 JOB_PROGRESS = {}
 JOB_LOCK = threading.Lock()
-
 
 def set_job_progress(job_id, **kwargs):
     with JOB_LOCK:

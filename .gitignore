@@ -5,8 +5,12 @@ backend_invoice/uploads/
 backend_invoice/__pycache__/
 backend_invoice/frontend_dist/
 __pycache__/
+**/__pycache__/
 *.py[codz]
 *$py.class
+*.env.local
+*.env.development
+*.pyc
 
 # C extensions
 *.so
