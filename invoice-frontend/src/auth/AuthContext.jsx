@@ -81,15 +81,18 @@ export function AuthProvider({ children }) {
     try {
       const payload = decodeJwt(tkn);
 
-      // Cek expired
       if (payload.exp && payload.exp * 1000 < Date.now()) {
         throw new Error("Token expired");
       }
 
-      // Cek akses billforge
       const apps = payload.apps || [];
       if (!apps.includes("billforge")) {
-        throw new Error("Akun tidak punya akses BillForge");
+        // Gak punya akses BF → langsung ke dashboard PG
+        localStorage.removeItem(TOKEN_KEY);
+        localStorage.removeItem(USER_KEY);
+        setLoading(false);
+        window.location.href = `${PILARGROUP_URL}/dashboard`;
+        return;
       }
 
       const userData = {
