@@ -24,9 +24,8 @@ jobs:
         working-directory: invoice-frontend
         shell: cmd
         run: |
-          set PATH=C:\nvm4w\nodejs;%PATH%
-          npm install
-          npm run build
+          C:\nvm4w\nodejs\npm.cmd install
+          C:\nvm4w\nodejs\npm.cmd run build
 
       # -------------------------
       # 3. Copy semua file ke C:\invoice
