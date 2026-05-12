@@ -1,0 +1,58 @@
+name: Deploy billforge
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    name: Build & Deploy to Windows Server
+    runs-on: self-hosted
+
+    steps:
+      # -------------------------
+      # 1. Checkout ke folder project
+      # -------------------------
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          path: C:\invoice
+
+      # -------------------------
+      # 2. Build frontend
+      # -------------------------
+      - name: Install dependencies & build frontend
+        working-directory: C:\invoice\invoice-frontend
+        shell: powershell
+        run: |
+          Write-Host ">> Install npm deps..."
+          npm install
+          Write-Host ">> Build frontend..."
+          npm run build
+          Write-Host ">> Frontend build selesai"
+
+      # -------------------------
+      # 3. Install Python dependencies
+      # -------------------------
+      - name: Install Python dependencies
+        shell: powershell
+        run: |
+          Write-Host ">> Installing Python deps..."
+          C:\laragon\bin\python\python-3.10\python.exe -m pip install `
+            -r C:\invoice\backend_invoice\requirements.txt --quiet
+          Write-Host ">> Done"
+
+      # -------------------------
+      # 4. Restart service via billforge-service.exe
+      # -------------------------
+      - name: Restart billforge service
+        shell: powershell
+        run: |
+          Write-Host ">> Stopping billforge service..."
+          & "C:\invoice\billforge-service.exe" stop
+          Start-Sleep -Seconds 3
+
+          Write-Host ">> Starting billforge service..."
+          & "C:\invoice\billforge-service.exe" start
+          Write-Host ">> Deploy selesai"
