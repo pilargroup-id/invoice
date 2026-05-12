@@ -25,9 +25,9 @@ jobs:
         shell: powershell
         run: |
           Write-Host ">> Install npm deps..."
-          C:\nvm4w\nodejs\npm.cmd install
+          cmd /c "C:\nvm4w\nodejs\npm.cmd install"
           Write-Host ">> Build frontend..."
-          C:\nvm4w\nodejs\npm.cmd run build
+          cmd /c "C:\nvm4w\nodejs\npm.cmd run build"
           Write-Host ">> Frontend build selesai"
 
       # -------------------------
