@@ -22,13 +22,13 @@ jobs:
       # -------------------------
       - name: Install dependencies & build frontend
         working-directory: invoice-frontend
-        shell: powershell
+        shell: cmd
         run: |
-          Write-Host ">> Install npm deps..."
-          cmd /c "C:\nvm4w\nodejs\npm.cmd install"
-          Write-Host ">> Build frontend..."
-          cmd /c "C:\nvm4w\nodejs\npm.cmd run build"
-          Write-Host ">> Frontend build selesai"
+          echo >> Install npm deps...
+          C:\nvm4w\nodejs\npm.cmd install
+          echo >> Build frontend...
+          C:\nvm4w\nodejs\npm.cmd run build
+          echo >> Frontend build selesai
 
       # -------------------------
       # 3. Copy semua file ke C:\invoice
