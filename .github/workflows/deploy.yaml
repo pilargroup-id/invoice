@@ -12,7 +12,7 @@ jobs:
 
     steps:
       # -------------------------
-      # 1. Checkout (ke default folder runner)
+      # 1. Checkout
       # -------------------------
       - name: Checkout source
         uses: actions/checkout@v4
@@ -28,31 +28,46 @@ jobs:
           C:\nvm4w\nodejs\npm.cmd run build
 
       # -------------------------
-      # 3. Copy semua file ke C:\invoice
+      # 3. Stop service
       # -------------------------
-      - name: Copy project files to C:\invoice
+      - name: Stop billforge service
         shell: powershell
         run: |
-          Write-Host ">> Copying files to C:\invoice..."
-          
-          # Stop service dulu sebelum copy
-          & "C:\invoice\billforge-service.exe" stop
+          Write-Host ">> Stopping BillForge service..."
+          Stop-Service -Name "BillForge" -Force -ErrorAction SilentlyContinue
           Start-Sleep -Seconds 3
-
-          # Copy backend
-          Copy-Item -Path "backend_invoice\*" `
-            -Destination "C:\invoice\backend_invoice" `
-            -Recurse -Force
-
-          # Copy frontend build
-          Copy-Item -Path "invoice-frontend\dist\*" `
-            -Destination "C:\invoice\invoice-frontend\dist" `
-            -Recurse -Force
-
-          Write-Host ">> Copy selesai"
+          Write-Host ">> Service stopped"
 
       # -------------------------
-      # 4. Install Python dependencies
+      # 4. Copy backend files
+      # -------------------------
+      - name: Copy backend files
+        shell: powershell
+        run: |
+          Write-Host ">> Copying backend_invoice..."
+          Copy-Item -Path "backend_invoice\*" `
+            -Destination "C:\invoice\backend_invoice" `
+            -Recurse -Force -Exclude "uploads","outputs","__pycache__"
+          Write-Host ">> Done"
+
+      # -------------------------
+      # 5. Copy frontend dist
+      # -------------------------
+      - name: Copy frontend dist
+        shell: powershell
+        run: |
+          Write-Host ">> Copying frontend dist..."
+          $dst = "C:\invoice\invoice-frontend\dist"
+          if (-not (Test-Path $dst)) {
+            New-Item -ItemType Directory -Path $dst -Force
+          }
+          Copy-Item -Path "invoice-frontend\dist\*" `
+            -Destination $dst `
+            -Recurse -Force
+          Write-Host ">> Done"
+
+      # -------------------------
+      # 6. Install Python dependencies
       # -------------------------
       - name: Install Python dependencies
         shell: powershell
@@ -63,11 +78,11 @@ jobs:
           Write-Host ">> Done"
 
       # -------------------------
-      # 5. Restart service
+      # 7. Start service
       # -------------------------
-      - name: Restart billforge service
+      - name: Start billforge service
         shell: powershell
         run: |
-          Write-Host ">> Starting billforge service..."
-          & "C:\invoice\billforge-service.exe" start
+          Write-Host ">> Starting BillForge service..."
+          Start-Service -Name "BillForge"
           Write-Host ">> Deploy selesai"
