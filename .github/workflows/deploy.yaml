@@ -22,26 +22,11 @@ jobs:
       # -------------------------
       - name: Install dependencies & build frontend
         working-directory: invoice-frontend
-        shell: powershell
+        shell: cmd
         run: |
-          Write-Host ">> Install npm deps..."
-          $npmPath = "C:\nvm4w\nodejs\npm.cmd"
-          $projectPath = (Get-Location).Path
-          
-          $install = Start-Process -FilePath "cmd.exe" `
-            -ArgumentList "/c `"$npmPath`" install" `
-            -WorkingDirectory $projectPath `
-            -Wait -PassThru -NoNewWindow
-          if ($install.ExitCode -ne 0) { exit $install.ExitCode }
-
-          Write-Host ">> Build frontend..."
-          $build = Start-Process -FilePath "cmd.exe" `
-            -ArgumentList "/c `"$npmPath`" run build" `
-            -WorkingDirectory $projectPath `
-            -Wait -PassThru -NoNewWindow
-          if ($build.ExitCode -ne 0) { exit $build.ExitCode }
-
-          Write-Host ">> Frontend build selesai"
+          set PATH=C:\nvm4w\nodejs;%PATH%
+          npm install
+          npm run build
 
       # -------------------------
       # 3. Copy semua file ke C:\invoice
