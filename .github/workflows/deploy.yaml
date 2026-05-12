@@ -20,12 +20,15 @@ jobs:
       # -------------------------
       # 2. Build frontend
       # -------------------------
-      - name: Install dependencies & build frontend
+      - name: Install npm dependencies
         working-directory: invoice-frontend
         shell: cmd
-        run: |
-          C:\nvm4w\nodejs\npm.cmd install
-          C:\nvm4w\nodejs\npm.cmd run build
+        run: C:\nvm4w\nodejs\npm.cmd install
+
+      - name: Build frontend
+        working-directory: invoice-frontend
+        shell: cmd
+        run: C:\nvm4w\nodejs\npm.cmd run build
 
       # -------------------------
       # 3. Stop service
